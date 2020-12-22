@@ -262,9 +262,18 @@
             position: absolute;
             left: 1100px;
             top: 1200px;
-            background-color: white;
+            background-color: rgb(0, 0, 0);
             width: 400px;
             height: 800px;
+        }
+        #toolBox a{
+            display: inline-block;
+            text-align: center;
+            width: 400px;
+            border: 1px solid #000000;
+            background-color: rgb(255, 174, 0);
+            margin-top: 20px;
+            
         }
         #game1Box{
             left:50px;
@@ -360,7 +369,11 @@
             border: 3px solid #ff5bc0;
             z-index: 1;
         }
-        
+        #musicPlayer{
+            position: absolute;
+            top: 650px;
+            left: 1100px;
+        }
 
     </style>
 </head>
@@ -435,6 +448,21 @@
                 <img src="工具.png" width="40px" height="40px">
             </div>
             <div id="toolBox">
+                <a href="tools.js">tools</a>
+                <a href="javascript:;">尚未开发...</a>
+                <a href="javascript:;">尚未开发...</a>
+                <a href="javascript:;">尚未开发...</a>
+                <a href="javascript:;">尚未开发...</a>
+                <a href="javascript:;">尚未开发...</a>
+                <a href="javascript:;">尚未开发...</a>
+                <a href="javascript:;">尚未开发...</a>
+                <a href="javascript:;">尚未开发...</a>
+                <a href="javascript:;">尚未开发...</a>
+                <a href="javascript:;">尚未开发...</a>
+                <a href="javascript:;">尚未开发...</a>
+                <a href="javascript:;">尚未开发...</a>
+                <a href="javascript:;">尚未开发...</a>
+                <a href="javascript:;">尚未开发...</a>
             </div>
             <div class="gametitle" id="gametitle1">
                 <img src="游戏.png" width="40px" height="30px">贪吃蛇
@@ -456,7 +484,7 @@
             <h1>Qiaoyang收到的评论:</h1>
         </div>
     </div>
-    <audio src="彩虹 - 周杰伦.mp3" autoplay="autoplay" controls="controls"></audio>
+    <audio src="彩虹 - 周杰伦.mp3" autoplay="autoplay" controls="controls" id="musicPlayer"></audio>
     <script src="tools.js"></script>
     <script>
         var options=document.getElementsByClassName("options");
@@ -475,6 +503,8 @@
         var remark=document.getElementById("remark");
         var textarea=document.getElementsByTagName("textarea");
         var leftOptions=document.getElementsByClassName("leftOptions");
+        var musicPlayer=document.getElementById("musicPlayer");
+        
         options[0].onclick=function(){
             location.href="#page";            //跳转首页
         }
@@ -518,6 +548,11 @@
         document.onscroll=function(event){
             leftMenu.style.top=window.pageYOffset+"px";    //左菜单跟随页面坐标移动
         }
+        /**/
+        document.addEventListener('scroll',function(){     //同一事件绑定多个函数
+            musicPlayer.style.top=window.pageYOffset+650+"px";    //音乐播放器跟随页面坐标移动
+        },false)
+        
         setTime();//开启计时器
         function setTime(){
             var timeStart=setInterval(function(){
