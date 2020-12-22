@@ -1,6 +1,6 @@
 function addClass(name,addClassName){
     if(!checkClass(name,addClassName))
-    name.className=name.className+""+addClassName;
+    name.className=name.className+" "+addClassName;
 }
 function checkClass(name,checkClassName){
     var reg=new RegExp("\\b"+checkClassName+"\\b")

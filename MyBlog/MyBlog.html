@@ -60,7 +60,7 @@
             overflow: scroll;
         }
         #biggestBox{
-            height: 1600px;
+            height: 3000px;
         }
         .options{
             top: 0px;
@@ -75,6 +75,23 @@
             border: 4px solid rgb(0, 0, 0);
             background-color: rgb(208, 255, 0);
             transform: skew(-30deg);
+            z-index: 1;
+            overflow: hidden;
+        }
+        .options div{
+            display: inline-block;
+            top: 14px;
+            left: -4px;
+            font-size: 30px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            position: relative;
+            width: 100px;
+            height: auto;
+            border: 4px solid rgb(0, 0, 0);
+            background-color: rgb(187, 0, 255);
+            cursor: pointer;
         }
         #identify{
             top: 180px;
@@ -105,6 +122,7 @@
             left: 100%;
             top: 50%;
             position: relative;
+            cursor: pointer;
         }
         #littleAvatar{
             position: relative;
@@ -136,6 +154,7 @@
             color: white;
             background-color: rgb(229, 255, 0);
             margin-top: 30px;
+            cursor: pointer;
         }
         #pictureBox img{
             width: 350px;
@@ -172,7 +191,7 @@
             position:absolute;
             left: 450px;
             top: 300px;
-            background-color: white;
+            background-color: rgb(150, 150, 150);
             border: 10px solid black;
             overflow: auto;
         }
@@ -180,23 +199,28 @@
             width: 1000px;
             height: 500px;
             position: relative;
-            font-size: 16px;
+            font-size: 30px;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background-color: #bfa;
+        }
+        #text textarea::placeholder{
+            font-size: 60px;
+            text-align: center;
         }
         #submitText{
             position: relative;
             width: 50px;
-            height: 50px;
+            height: 25px;
             left: 475px;
-            
+            color: black;
         }
         #remark{
             position: relative;
             left: 20px;
-            top: 400px;
+            top: 1500px;
             width: 1450px;
-            height: 1000px;
-            background-color: rgba(255, 255, 255, 0.483);
+            height: 700px;
+            background-color: rgba(255, 255, 255, 0.646);
         }
         #remark h1{
             position: relative;
@@ -234,6 +258,110 @@
             font-weight: 100;
             position: absolute;
         }
+        #toolBox{
+            position: absolute;
+            left: 1100px;
+            top: 1200px;
+            background-color: white;
+            width: 400px;
+            height: 800px;
+        }
+        #game1Box{
+            left:50px;
+            position: absolute;
+            top: 1200px;
+            background-color: rgb(0, 0, 0);
+            width: 1008px;
+            height: 808px;
+        }
+        .startGame{
+            position: relative;
+            width: 600px;
+            height: 200px;
+            left: 204px;
+            top: 304px;
+            color: red;
+            font-size: 80px;
+            -webkit-text-stroke: white 3px;
+            text-align:center;
+            font-weight: 900;
+            line-height: 200px;
+            cursor: pointer;
+        }
+        #stopGame{
+            position: absolute;
+            top: 1205px;
+            left: 993px;
+            width: 50px;
+            height: 25px;
+            font-size: 20px;
+            background-color: rgb(187, 255, 0);
+            text-align: center;
+            line-height: 25px;
+            cursor: pointer;
+        }
+        #endGame{
+            position: absolute;
+            top: 1205px;
+            left: 923px;
+            width: 50px;
+            height: 25px;
+            font-size: 20px;
+            background-color: rgb(255, 0, 0);
+            text-align: center;
+            line-height: 25px;
+            cursor: pointer;
+        }
+        .gametitle{
+            position: absolute;
+            width: auto;
+            height: 60px;
+            top: 1130px;
+            left: 50px;
+            background-color: rgb(77, 255, 0);
+            border: 2px solid rgb(43, 255, 0);
+            color: rgb(255, 255, 255);
+            font-size: 50px;
+            text-shadow:0px 0px 4px rgb(0, 255, 217);
+            box-shadow: 0px 0px 20px rgb(0, 255, 0);
+            line-height: 60px;
+        }
+        .tooltitle{
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            top: 1150px;
+            left: 1100px;
+            background-color: rgb(255, 196, 0);
+            border: 2px solid rgb(0, 0, 0);
+            box-shadow: 0px 0px 30px rgb(255, 255, 255);
+        }
+        #food{
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #ffbb00;
+            position:absolute;
+        }
+        #map{
+            width: 1000px;
+            height: 800px;
+            border: 4px solid rgb(60, 0, 255); 
+           
+        }
+        .snackBody{
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #00ff1e;
+            position: absolute;
+        }
+        .head{
+            border: 3px solid #ff5bc0;
+            z-index: 1;
+        }
+        
+
     </style>
 </head>
 <body id="page">
@@ -244,9 +372,9 @@
             <p style="text-align: center;">用户:Qiaoyang</p>
             <p style="text-align: center;" id="time"></p>
             <div class="leftOptions">首页</div>
-            <div class="leftOptions">个人</div>
-            <div class="leftOptions">233</div>
-            <div class="leftOptions">666</div>
+            <div class="leftOptions">在线工具</div>
+            <div class="leftOptions">Games</div>
+            <div class="leftOptions">评论区</div>
         </div>
         <div id="title">
             <div id="avatarBorder">
@@ -256,9 +384,25 @@
             <span id="cutLine">/</span>
             <span id="nickName">yagamichihaya</span>
             <div class="options">首页</div>
-            <div class="options">个人</div>
-            <div class="options">233</div>
-            <div class="options">666</div>
+            <div class="options">
+                工具
+                <div>
+                    计算器
+                </div>
+                <div>
+                    尚未开发...
+                </div>
+            </div>
+            <div class="options">
+                Games
+                <div>
+                    贪吃蛇
+                </div>
+                <div>
+                    尚未开发...
+                </div>
+            </div>
+            <div class="options">评论区</div>
             <div id="identify">制作by:1840102243软件工程二班覃皓洋</div>
         </div>
         <div id="body">
@@ -284,22 +428,45 @@
                 <a href="javascript:;"></a>
             </div>
             <div id="text">
-                <textarea placeholder=""></textarea>
+                <textarea placeholder="请输入你的评论"></textarea>
                 <input type="button" id="submitText" value="提交">
             </div>
+            <div class="tooltitle">
+                <img src="工具.png" width="40px" height="40px">
+            </div>
+            <div id="toolBox">
+            </div>
+            <div class="gametitle" id="gametitle1">
+                <img src="游戏.png" width="40px" height="30px">贪吃蛇
+            </div>
+            <div id="game1Box">
+                <div id="map">
+                    <div id="snack">
+                        <div class="head snackBody"></div>
+                        <div class="snackBody"></div>
+                    </div>
+                    <div id="food"></div>
+                    <div class="startGame">Game Start</div>
+                </div>
+            </div>
+            <div id="stopGame">stop</div>
+            <div id="endGame">end</div>
         </div>
         <div id="remark">
             <h1>Qiaoyang收到的评论:</h1>
         </div>
     </div>
+    <audio src="彩虹 - 周杰伦.mp3" autoplay="autoplay" controls="controls"></audio>
     <script src="tools.js"></script>
     <script>
-        var options=document.getElementsByClassName("options")
+        var options=document.getElementsByClassName("options");
+        var tool=options[1].getElementsByTagName("div");
+        var games=options[2].getElementsByTagName("div");
         var identify=document.getElementById("identify");
         var leftMenuClick=document.getElementById("leftMenuClick");
         var leftMenu=document.getElementById("leftMenu");
         var time=document.getElementById("time");
-        var seconds=0,count;
+        var seconds=0,mins=0,hours=0,count;
         var pictureBox=document.getElementById("pictureBox");
         var pictureArr=pictureBox.getElementsByTagName("img");
         var changePictureButton=document.getElementById("changePictureButton");
@@ -307,13 +474,35 @@
         var submitText=document.getElementById("submitText")
         var remark=document.getElementById("remark");
         var textarea=document.getElementsByTagName("textarea");
-        
-        pictureBox.style.width=354+"px";
-        pictureBox.style.height=504*pictureBox.length+"px";
-        for(var i=0;i<aArr.length;i++){
-            aArr[i].style.top=310+i*68+"px";
+        var leftOptions=document.getElementsByClassName("leftOptions");
+        options[0].onclick=function(){
+            location.href="#page";            //跳转首页
         }
-        
+        options[3].onclick=function(){
+            location.href="#remark";             //跳转评论区
+        }
+        for(var i=0;i<games.length;i++){
+            games[i].onclick=function(){
+                location.href="#gametitle1"         //跳转到游戏区
+            }
+        }
+        for(var i=0;i<tool.length;i++){
+            tool[i].onclick=function(){
+                location.href="#gametitle1"         //跳转到工具区，因为两区处于同一水平线故跳转到游戏区
+            }
+        }
+        leftOptions[0].onclick=function(){
+            location.href="#page";            //跳转首页
+        }
+        leftOptions[1].onclick=function(){
+            location.href="#gametitle1"         //跳转到游戏区
+        }
+        leftOptions[2].onclick=function(){
+            location.href="#gametitle1"         //跳转到工具区，因为两区处于同一水平线故跳转到游戏区
+        }
+        leftOptions[3].onclick=function(){
+            location.href="#remark";             //跳转评论区
+        }
         leftMenu.onmousemove=function(){
             move(leftMenu,5,0,"left",function(){})
         }
@@ -323,7 +512,7 @@
         for(var i=0;i<options.length;i++){               
             options[i].style.left=800+i*150+"px";
             options[i].style.top=-50+"px";
-            move(options[i],3,50,"top",function(){})            //赋给选项之间的距离和初始坐标
+            move(options[i],3,50,"top",function(){})
         }
         move(identify,-10,800,"left",function(){})   //左菜单移动
         document.onscroll=function(event){
@@ -332,9 +521,21 @@
         setTime();//开启计时器
         function setTime(){
             var timeStart=setInterval(function(){
-                time.innerHTML="在线时间:"+seconds+++"秒";
-                if(seconds==60)alert("您已在线一分钟，请注意休息");//计时器
+                time.innerHTML="在线时间:"+hours+"时"+mins+"分"+seconds+++"秒";
+                if(seconds==60){
+                    mins++;
+                    seconds=0
+                    if(mins==60){
+                        hours++;
+                        mins=0;
+                    }
+                };//计时器
             },1000)
+        }
+        pictureBox.style.width=354+"px";               //赋给轮播图选项初始位置
+        pictureBox.style.height=504*pictureBox.length+"px";
+        for(var i=0;i<aArr.length;i++){
+            aArr[i].style.top=310+i*68+"px";
         }
         var nextPicture,lastPicture;
         function skip(speed,i){                        //轮播图的跳转效果
@@ -392,20 +593,184 @@
             },3000)
         }
         autoChange()
-        submitText.onclick=function(){
+        submitText.onclick=function(){                           //提交按钮把textarea里内容转到下方的remark盒子，实现一个评论区效果
             var user=document.createElement("div");
             var userAvatar=document.createElement("img")
             var userP=document.createElement("p")
             var textareaValue=textarea[0].value;
             var userText=document.createTextNode(textareaValue);
-            addClass(user,"userRemarkBox")
-            remark.appendChild(user);
-            addClass(userAvatar,"userAvatar")
-            user.appendChild(userAvatar)
-            addClass(userP,"userP");
-            user.appendChild(userP)
-            userP.appendChild(userText)
+            
+            if(textareaValue.length==0){alert("你还没评论呢")}
+            else{
+                addClass(user,"userRemarkBox")
+                remark.appendChild(user);
+                addClass(userAvatar,"userAvatar")
+                user.appendChild(userAvatar)
+                addClass(userP,"userP");
+                user.appendChild(userP)
+                userP.appendChild(userText)
+                textarea[0].value="";
+                remark.style.height=remark.offsetHeight+300+"px";
+                alert("成功提交了您的评论，请在下方查看")
+            }
+            
         }
+        function openOption(n){
+            var timeover
+            options[n].onmousemove=function(){
+                options[n].style.overflow="visible";
+            }
+            options[n].onmouseout=function(){
+                timeover=setTimeout(function(){
+                    options[n].style.overflow="hidden";
+                },6000)
+            
+            }
+        }
+        openOption(1);
+        openOption(2);
+
+
+
+
+
+//贪吃蛇的script
+        var game1Box=document.getElementById("game1Box");
+        var startGame=document.getElementsByClassName("startGame");
+        var startGame1=startGame[0]
+        var stopGame=document.getElementById("stopGame");
+        var endGame=document.getElementById("endGame");
+        var mouseXPosition
+        var mouseYPosition
+        var gameNow=0;
+        var gamecount=0;
+        var start;
+        var map=document.getElementById("map")
+            var snack=document.getElementById("snack");
+            var food=document.getElementById("food");
+            var snackBox=document.getElementsByClassName("snackBody");                    
+            var snackNowXpositon;
+            var snackNowYpositon;
+            var lastDirection;
+        stopGame.onclick=function(){
+            checkClass(startGame1,"startGame")
+            toggleClass(startGame1,"startGame")
+            game1Box.style.cursor="auto";
+            clearInterval(start);
+            alert("游戏暂停")
+        }
+        endGame.onclick=function(){
+            toggleClass(startGame1,"startGame")
+            game1Box.style.cursor="auto";
+            alert("你的得分:"+gamecount)
+            document.onkeydown=null;
+            resetBody()
+            gamecount=0;
+            alert("游戏结束")
+        }
+        startGame1.onclick=function(event){
+            event.cancelBubble=true;//取消冒泡行为
+            toggleClass(startGame1,"startGame")
+            game1Box.style.cursor="none";  //取消鼠标显示
+            snackMove(snackBox[0],20);
+            deleteFood()
+        }
+            function snackMove(obj,speed){
+                    document.onkeydown=function(event){
+                        clearInterval(start)
+                        var direction=event.keyCode;
+                        
+                        start=setInterval(function(){
+        
+                            switch(direction){
+                                case 37: 
+                                if(lastDirection!=39){
+                                    snackNowXpositon=obj.offsetLeft-speed+"px";
+                                    lastDirection=direction;
+                                }
+                                    break;
+                                case 38: 
+                                if(lastDirection!=40){
+                                snackNowYpositon=obj.offsetTop-speed+"px";
+                                lastDirection=direction;
+                                }
+                                    break;
+                                case 39: 
+                                if(lastDirection!=37){
+                                snackNowXpositon=obj.offsetLeft+speed+"px";
+                                lastDirection=direction;
+                                }
+                                    break;
+                                case 40: 
+                                if(lastDirection!=38){
+                                snackNowYpositon=obj.offsetTop+speed+"px";
+                                lastDirection=direction;
+                                }
+                                    break; 
+                            }
+                            for(var i=snackBox.length-1;i>0;i--){
+                                snackBox[i].style.left=snackBox[i-1].offsetLeft+"px";
+                                snackBox[i].style.top=snackBox[i-1].offsetTop+"px";
+                            }
+                            snackBox[0].style.left=snackNowXpositon;
+                            snackBox[0].style.top=snackNowYpositon;
+                            checkCrush()
+        
+                            if(Math.abs(food.offsetLeft-snackBox[0].offsetLeft)==0&&Math.abs(food.offsetTop-snackBox[0].offsetTop)==0){
+                                deleteFood()
+                                addBody()
+                            }
+                            if(snackBox[0].offsetLeft>1000){
+                                snackBox[0].style.left=4+"px";
+                                
+                            }
+                            else if(snackBox[0].offsetTop>800){
+                                snackBox[0].style.top=4+"px";
+                            }
+                            else if(snackBox[0].offsetLeft<-1){
+                                snackBox[0].style.left=984+"px";
+                                
+                            }
+                            else if(snackBox[0].offsetTop<-1){
+                                snackBox[0].style.top=784+"px";
+                            }
+                        },200)
+                        return false;
+                    }
+                }
+                function deleteFood(){
+                    food.style.left=Math.floor(Math.random()*50)*20+4+"px";
+                    food.style.top=Math.floor(Math.random()*40)*20+4+"px";
+                }
+                function addBody(){
+                    var newBody=document.createElement("div");
+                    newBody.setAttribute("class","snackBody");
+                    snack.appendChild(newBody)
+                    gamecount++;
+                }
+                function checkCrush(){
+                    for(var i=1;i<snackBox.length;i++){
+                        if(snackBox[i].offsetLeft==snackBox[0].offsetLeft&&snackBox[i].offsetTop==snackBox[0].offsetTop){
+                            clearInterval(start);
+                        alert("你吃掉了自己！！")
+                        alert("你的得分:"+gamecount)
+                        resetBody()
+                        }         
+                    }
+                }
+                function resetBody(){
+                    for(var i=0;i<gamecount;i++){
+                        snack.removeChild(snack.lastChild);   
+                    }
+                    clearInterval(start)
+                    snackBox[0].style.left=4+"px";
+                    snackBox[0].style.top=4+"px";
+                    snackBox[1].style.left=4+"px";
+                    snackBox[1].style.top=4+"px";
+                    snackNowXpositon=null;
+                    snackNowYpositon=null;
+                }
+        
     </script>
 </body>
 </html>
