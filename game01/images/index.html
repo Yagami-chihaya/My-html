@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .backgoundPicture{
+            background:url(game_bg.jpg) no-repeat 0 0;
+            margin: 50px auto;
+            width: 320px;
+            height: 480px;
+            position: relative;
+        }
+        h1{
+            margin-left: 60px;
+            color: white;
+            display: none;
+        }
+        .backgoundPicture>.timer{
+            background-color: rgb(210, 105, 30);
+            width: 180px;
+            height: 16px;
+            border-radius: 10px;
+            position: relative;
+            top: 3px;
+            left: 62px;
+            display: none;
+        }
+        .wolfImage{
+            width: 108px;
+            height: 101px;
+            background:url(h.png) no-repeat 0 0;
+            position: absolute;
+            display: none;
+            cursor: pointer;
+        }
+        .wolfImage1{
+            width: 108px;
+            height: 101px;
+            background:url(x.png) no-repeat 0 0;
+            position: absolute;
+            display: none;
+            cursor: pointer;
+        }
+        .gameStart{
+            text-align: center;
+            color: white;
+            font-size: 30px;
+            line-height: 45px;
+            background: rgb(255, 72, 0);
+            width: 180px;
+            height: 45px;
+            border-radius: 20px;
+            position: absolute;
+            left: 70px;
+            bottom: 200px;
+            cursor: pointer;
+        }
+        .rules{
+            background-color: #cccccc;
+            text-align: center;
+            font-size: 16px;
+            width: 100%;
+            height: 20px;
+            position: absolute;
+            bottom: 0px;
+            cursor: pointer;
+        }
+        .rule{
+            background-color: #ffffff7e;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            font-size: 20px;
+            line-height: 30px;
+            color: rgb(0, 0, 0);
+            position: absolute;
+            top: 0px;
+            padding-top: 70px;
+            box-sizing: border-box;
+            display: none;
+        }
+        .over{
+            background-color: #0000007e;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            font-size: 20px;
+            line-height: 30px;
+            color: white;
+            position: absolute;
+            top: 0px;
+            padding-top: 180px;
+            box-sizing: border-box;
+            display: none;
+        }
+        .over>p{
+            color: red;
+            text-shadow: 2px 2px 1px white;
+            font-size: 40px;
+            font-weight: bolder;
+        }
+        .over>button{
+            text-align: center;
+            color: white;
+            font-size: 30px;
+            line-height: 45px;
+            background: rgb(0, 255, 238);
+            width: 180px;
+            height: 45px;
+            border-radius: 20px;
+            
+            left: 70px;
+            bottom: 200px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="backgoundPicture">
+        <h1>0</h1>
+        <div class="timer"></div>
+        <div class="wolfImage"></div>
+        <div class="wolfImage1"></div>
+        <div class="gameStart">游戏开始</div>
+        <div class="rules">游戏规则</div>
+        <div class="rule">
+            <p>游戏规则:</p>
+            <p>1.游戏时间有60秒</p>
+            <p>2.用你最快的速度敲打灰太狼保护羊村,打一次灰太狼加10分</p>
+            <p>3.不要错打小灰灰哦~会扣20分</p>
+            <a href="javascript:;">[关闭]</a>
+        </div>
+        <div class="over">
+            <p>GAME OVER</p>
+            <button>重新开始</button>
+        </div>
+    </div>
+    <script src="jquery-3.5.1.js"></script>
+    <script>
+        var count=0;
+        var i=0,m,i1=0,m1;
+        var positionArr=[[90,110],[20,215],[20,155],[30,285],[115,270],[100,190],[200,210],[190,135],[210,290]]
+        var n,p;
+        var wolfAppearAnime,wolfDisapperAnime
+        
+        $(".over>button").click(function(){
+            $(this).parent("div").fadeOut(1000)
+            $(".gameStart").css({
+                display:"block"
+            })
+        })
+
+        $(".rules").click(function(){
+            /*$(".rule").css({
+                display:"block"
+            })*/
+            $(".rule").slideDown(1000)
+        })
+        $(".rule>a").click(function(){
+            $(this).parent("div").slideUp(1000)
+        })
+        $(".gameStart").click(function(){
+            count=0;      //清空得分
+            $("h1").text(count)
+            p=1;
+            $(this).css({
+                display:"none",
+            })
+            $(".timer").css({
+                display:"block",
+                width:180,
+            })
+            $("h1").css({
+                display:"block",
+            })
+            $(".timer").animate({width:0},60000,"linear",function(){
+                p=0;          //变量p用于判断时间条是否为0后停止游戏
+                $(".over").slideDown(1000,function(){
+                    alert("你的得分为:"+count+" 再接再厉！！")
+                })
+            })          //时间条
+            huitailang()
+            xiaohuihui();
+        })
+        
+        function huitailang(){
+            clearInterval(randomPosition)        //关闭上一个定时器
+                
+                
+            var randomPosition=setInterval(function(){       
+                if(p==0){
+                    //alert("0")
+                    clearInterval(randomPosition)
+                }
+                else{
+                    n=Math.round(Math.random()*(positionArr.length-1));
+                    wolfAppearAnime=setInterval(function(){
+                        m=0;
+                        if(m==2){                  //被击打的灰太狼应该停止它的出现动画，此处进行一个是否被打的判断
+                            clearInterval(wolfAppearAnime)
+                        }
+                        if(i<5){
+                            $(".wolfImage").css({
+                                background:"url(h.png) no-repeat "+(-108)*i+"px 0",        //灰太狼出现的动画效果
+                                display:"block",
+                            })
+                        console.log("出现"+i);
+                        i++;
+                        
+                        }
+                        
+                        else if(i==5){
+                            clearInterval(wolfAppearAnime)
+                            clearInterval(wolfDisapperAnime)    
+                            var wolfDisapperAnime=setInterval(function(){
+                                m=1;
+                                $(".wolfImage").css({
+                                    background:"url(h.png) no-repeat "+(-108)*i+"px 0",        //灰太狼消失的动画效果
+                                    display:"block",
+                                })
+                                console.log("消失"+i);
+                                i--;
+                                if(i<-1){                //需要灰太狼完全消失即图片消失所以i应该等于-1，关闭定时器需要i<-1
+                                    clearInterval(wolfDisapperAnime)
+                                    i=0;
+                                };
+                                
+                            },100)    
+                        }
+                        
+                    },150)
+                    console.log(wolfAppearAnime);
+            
+                
+            
+                    $(".wolfImage").click(function(){
+                        console.log("被点"+i);
+                        
+                        
+                        console.log("m="+m);
+                        if(m==0&&i!=5){
+                            clearInterval(wolfAppearAnime)
+                            m=2;
+                            i=6;
+                            count+=10;
+                            $("h1").text(count);
+                            var wolfBeatAnime=setInterval(function(){
+                                if(i!=10){
+                                    $(".wolfImage").css({
+                                        background:"url(h.png) no-repeat "+(-108)*i+"px 0",        //灰太狼被打的动画效果
+                                        display:"block",
+                                    })
+                                    i++;
+                                    console.log("被打"+i);
+                                }
+                                
+                                else if(i==10){
+                                    $(".wolfImage").css({
+                                        background:"url(h.png) no-repeat "+(-108)*i+"px 0",        //下标10没有灰太狼，此处是为了让灰太狼消失
+                                        display:"block",
+                                    })
+                                    clearInterval(wolfBeatAnime)     //结束被打动画
+                                    i=0;
+                                }
+                            },100)
+                        }
+                    })
+                
+            
+            
+                    $(".wolfImage").css({             //随机位置生成
+                        left:positionArr[n][0],
+                        top:positionArr[n][1] 
+                    })
+                }   
+            },2000)
+        }
+        
+        function xiaohuihui(){
+            clearInterval(randomPosition1)        //关闭上一个定时器
+                
+                
+            var randomPosition1=setInterval(function(){       
+                if(p==0){
+                    //alert("0")
+                    clearInterval(randomPosition1)
+                }
+                else{
+                    for(var i=0;i<5;i++){
+                        var q=n;
+                        n=Math.round(Math.random()*(positionArr.length-1));             //循环检测灰太狼和小灰灰是否重叠，如果是则小灰灰的位置重新赋值直到和灰太狼位置不重叠
+                        if(q==n){
+                            n=Math.round(Math.random()*(positionArr.length-1));
+                        }
+                        else break;
+                    }
+                    
+                    
+                    wolfAppearAnime1=setInterval(function(){
+                        m1=0;
+                        if(m1==2){                  //被击打的小灰灰应该停止它的出现动画，此处进行一个是否被打的判断
+                            clearInterval(wolfAppearAnime1)
+                        }
+                        if(i1<5){
+                            $(".wolfImage1").css({
+                                background:"url(x.png) no-repeat "+(-108)*i1+"px 0",        //小灰灰出现的动画效果
+                                display:"block",
+                            })
+                        console.log("出现"+i1);
+                        i1++;
+                        
+                        }
+                        
+                        else if(i1==5){
+                            clearInterval(wolfAppearAnime1)
+                            clearInterval(wolfDisapperAnime1)    
+                            var wolfDisapperAnime1=setInterval(function(){
+                                m1=1;
+                                $(".wolfImage1").css({
+                                    background:"url(x.png) no-repeat "+(-108)*i1+"px 0",        //小灰灰消失的动画效果
+                                    display:"block",
+                                })
+                                console.log("消失"+i);
+                                i1--;
+                                if(i1<-1){                //需要小灰灰完全消失即图片消失所以i应该等于-1，关闭定时器需要i<-1
+                                    clearInterval(wolfDisapperAnime1)
+                                    i1=0;
+                                };
+                                
+                            },100)    
+                        }
+                        
+                    },150)
+                    console.log(wolfAppearAnime1);
+            
+                
+            
+                    $(".wolfImage1").click(function(){
+                        console.log("被点"+i1);
+                        
+                        
+                        console.log("m="+m1);
+
+                        if(m1==0&&i1!=5){
+                            clearInterval(wolfAppearAnime1)
+                            m1=2;
+                            i1=6;
+                            count-=20;
+                            $("h1").text(count);
+                            var wolfBeatAnime1=setInterval(function(){
+                                if(i1!=10){
+                                    $(".wolfImage1").css({
+                                        background:"url(x.png) no-repeat "+(-108)*i1+"px 0",        //小灰灰被打的动画效果
+                                        display:"block",
+                                    })
+                                    i1++;
+                                    console.log("被打"+i1);
+                                }
+                                
+                                else if(i1==10){
+                                    $(".wolfImage1").css({
+                                        background:"url(x.png) no-repeat "+(-108)*i1+"px 0",        //下标10没有小灰灰，此处是为了让灰太狼消失
+                                        display:"block",
+                                    })
+                                    clearInterval(wolfBeatAnime1)     //结束被打动画
+                                    i1=0;
+                                }
+                            },100)
+                        }
+                    })
+                
+            
+            
+                    $(".wolfImage1").css({             //随机位置生成
+                        left:positionArr[n][0],
+                        top:positionArr[n][1] 
+                    })
+                }   
+            },3500)
+        }
+
+            
+    </script>
+</body>
+</html>
