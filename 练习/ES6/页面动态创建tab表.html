@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tab表的添加修改</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #box{
+            width: 800px;
+            height: 600px;
+            border: 1px solid pink;
+            margin: 0 auto;
+        }
+        #tab{
+            width: 100%;
+            height: 60px;
+            
+            color: chartreuse;
+            text-align: center;
+            position: relative;
+            margin: 0 auto;
+            
+        }
+        #tab li{
+            list-style: none;
+        }
+        #tab span{
+            display: block;
+            width: 100px;
+            height: 60px;
+            line-height: 60px;
+            float: left;
+            border-right: 1px solid black;
+            border-bottom: 1px solid black;
+            padding-left: 16px;
+        }
+        #tab span:hover{
+            background-color: rgb(177, 177, 177);
+        }
+        span img{
+            float: right;
+        }
+        .addTag{
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            right: 5px;
+            top: 15px;
+            background:url(./添加.png) no-repeat 0 0;
+            background-size: 30px;
+        }
+        #showFrame{
+            width: 100%;
+            height: 540px;
+            margin-top: 2px;
+            background-color: rgb(255, 241, 219);
+        }
+        section{
+            font-size: 0;
+        }
+        .activate{
+            border-bottom: none !important;
+        }
+        .secactivate{
+            font-size: 16px;
+        }
+        .guanbi{
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="tab">
+            <li><span>test1<img class="guanbi" src="叉.png"></span></li>
+            <li><span>test2<img class="guanbi" src="叉.png"></span></li>
+            <li><span>test3<img class="guanbi" src="叉.png"></span></li>
+            
+            <div class="addTag"></div>
+        </div>
+        <div id="showFrame">
+            <section>Test1</section>
+            <section>Test2</section>
+            <section>Test3</section>
+        </div>
+    </div>
+    
+    <script>
+        var that
+        var addnumber = 0
+        class Tab{     //定义标签对象
+            constructor(id){
+                that = this
+                this.main = document.querySelector(id)
+                //this.lis = this.main.querySelectorAll('li')
+                //this.sections = this.main.querySelectorAll('section')
+                this.add = this.main.querySelector('.addTag')
+                this.tablib = this.main.querySelector('#tab')
+                this.showFrame = this.main.querySelector('#showFrame')
+                //this.shutdown = this.main.querySelectorAll('.guanbi')
+                this.init()
+            }
+            init(){    //初始化数据，获得各个方法需要的点击事件
+                this.updata()
+                this.add.onclick = this.addTab
+                
+                for(var i=0;i<this.lis.length;i++){    //遍历li标签，为每个li标签和关闭图片添加点击事件
+                    this.lis[i].index = i;
+                    this.lis[i].onclick = this.toggleTab
+                    this.shutdown[i].onclick = this.removeTab
+                    this.spans[i].ondblclick = this.editTab
+                    this.sections[i].ondblclick = this.editContent
+                }
+                
+            }
+            updata(){      //更新动态生成的标签
+                this.lis = this.main.querySelectorAll('li')
+                this.sections = this.main.querySelectorAll('section')
+                this.shutdown = this.main.querySelectorAll('.guanbi')  
+                this.spans = this.main.querySelectorAll('span') 
+                
+            }
+            toggleTab(){   //切换标签
+                that.clearClass()
+                
+                this.querySelector('span').className = 'activate'
+                that.sections[this.index].className = 'secactivate'
+                
+            }
+            clearClass(){   //清空标签的选中效果
+                for(var i=0;i<this.lis.length;i++){
+                    this.lis[i].querySelector('span').className=''
+                    
+                    this.sections[i].className=''
+                }
+            }
+            addTab(){  //添加标签
+                if (addnumber <3){
+                    that.clearClass()
+                    var li = '<li><span>test4<img class="guanbi" src="叉.png"></span></li>'
+                    that.tablib.insertAdjacentHTML('beforeend',li)
+                    
+                    var section = '<section class="secactivate">阿巴阿巴阿巴</section>'
+                    that.showFrame.insertAdjacentHTML('beforeend',section)
+                    addnumber++
+                    that.init()
+                    console.log("add "+that.lis.length);
+                }
+                else alert("超出添加数量！！")   
+            }
+            removeTab(e){  //删除标签
+                e.stopPropagation()  //阻止事件冒泡
+                var index = this.parentNode.parentNode.index
+                
+                
+                that.lis[index].remove()
+                that.sections[index].remove()
+                that.init()     //更新删除后的列表
+                addnumber--
+                console.log("index"+index);
+                console.log("length"+that.lis.length);
+
+                if (index!=that.lis.length){
+
+                    that.lis[index].click() //实现删除后选中前一元素的效果
+                    console.log("index1 "+index);
+                    console.log("length1 "+that.lis.length);
+
+                    
+                }
+                else if (index == that.lis.length){
+                    index--
+                    that.lis[index].click()
+                    console.log("index2 "+index);
+                    console.log("length2 "+that.lis.length);
+                    
+                }
+                
+            }
+            editTab(){
+                var str = this.innerHTML
+                console.log("wow");
+                window.getSelection ? window.getSelection().removeAllRanges():document.selection.empty();
+                //禁用双击选中文字效果，这段代码不用记住
+                console.log(this);
+                this.innerHTML = '<input type="text"/>'
+                var input = this.firstChild
+                str = str.replace(/<.*>/,"")
+                input.value = str
+                input.select()
+                input.onblur = function(){
+                    console.log(this.value);
+                    this.parentNode.innerHTML = this.value+'<img class="guanbi" src="叉.png">'
+                    //span的内容被input输入的内容替换掉了，同时也就删除了input，妙啊！！
+                    
+                }
+                /*this.firstChild.onkeydown = function(e){
+                    if (window.event.keyCode == "13"){
+                        this.parentNode.innerHTML = this.value+'<img class="guanbi" src="叉.png">'
+                    } 
+                }*/
+                input.onkeydown = function(e){
+                    if(e.keyCode==13){
+                        input.onblur()
+                    }
+                }
+            }
+            editContent(){
+                var str = this.innerHTML
+                console.log("wow");
+                window.getSelection ? window.getSelection().removeAllRanges():document.selection.empty();
+                //禁用双击选中文字效果，这段代码不用记住
+                console.log(this);
+                this.innerHTML = '<input type="text"/>'
+                var input = this.firstChild
+                
+                input.value = str
+                input.select()
+                input.onblur = function(){
+                    console.log(this.value);
+                    this.parentNode.innerHTML = this.value
+                    
+                    
+                }
+               
+                input.onkeydown = function(e){
+                    if(e.keyCode==13){
+                        input.onblur()
+                    }
+                }
+            }
+        }
+        var tab = new Tab('#box')    //生成实例
+    </script>
+</body>
+</html>

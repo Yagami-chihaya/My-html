@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>点我</button>
+    <script>
+        class ClickMe{
+            constructor(){
+                this.btn = document.querySelector("button")
+                this.btn.onclick = this.show
+            }
+            show(){
+                console.log("别点了~~");
+            }
+        }
+        var clickme = new ClickMe()
+        /*
+        class Father{
+            constructor(num1,num2){
+                this.num1=num1;
+                this.num2=num2;   
+            }
+            sum(){
+                console.log(this.num1+this.num2);
+            }
+        }
+        class Son extends Father{
+            constructor(x,y){
+                super(x,y)  
+                this.x = x;
+                this.y = y;
+                   
+            }
+        }
+        var son = new Son(1,2)
+        son.sum()*/
+    </script>
+</body>
+</html>

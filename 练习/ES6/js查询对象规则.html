@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function qiao(name){
+            //this.name = name
+        }
+        //qiao.prototype.name = "qiaoyang"   //第二
+        Object.prototype.name = "yagamichihaya"  //第三
+        //var qiaoyang = new qiao("qinhaoyang")    最先调用
+        var qiaoyang = new qiao()
+        console.log(qiaoyang.name);
+
+        //总结,构造方法里属性会最先调用，如果没有则去原型对象里查找，如果还没有就去Object原型对象查找，再没有就真没了！
+        
+    </script>
+</body>
+</html>

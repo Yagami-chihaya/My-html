@@ -129,6 +129,7 @@
 }
 .content_list ul>li>.checked{
     background: url(../imgs/√.png) no-repeat 17px 17px;
+    opacity: 1 !important;
 }
 .content_list ul>li>.check>span{
     display: inline-block;
@@ -142,20 +143,33 @@
     height: 100%;
 
 }
+.content_list ul>li>.number2{
+    color:transparent;
+    background: url(../imgs/wave.gif) no-repeat 0 20px;
+}
 .content_list ul>li>.name{
     width: 50%;
     height: 100%;
 
+}
+.content_list ul>li>.name:hover{
+    opacity: 1 !important;
 }
 .content_list ul>li>.singer{
     width: 20%;
     height: 100%;
 
 }
+.content_list ul>li>.singer:hover{
+    opacity: 1 !important;
+}
 .content_list ul>li>.time{
 
     height: 100%;
 
+}
+.content_list ul>li>.time:hover{
+    opacity: 1 !important;
 }
 .list_menu{
     display: inline-block;
@@ -167,22 +181,37 @@
     width: 36px;
     height: 36px;
     margin-top: 7px;
+    opacity:  1;
 }
+
 .list_menu a:nth-child(1){
     background-image: url(../imgs/播放.png);
     background-size: 36px 36px;
 }
 .list_menu a:nth-child(2){
     background-image: url(../imgs/添加到\ \(2\).png);
-    background-size: 36px 36px;
+    background-size: 33px 33px;
+    position: relative;
+    top: 1px;
+    left: 1px;
+    background-repeat: no-repeat;
 }
 .list_menu a:nth-child(3){
     background-image: url(../imgs/下载\ \(2\).png);
-    background-size: 36px 36px;
+    background-size: 33px 33px;
+    position: relative;
+    top: 1px;
+    left: 1px;
+    background-repeat: no-repeat;
 }
 .list_menu a:nth-child(4){
     background-image: url(../imgs/分\ 享.png);
     background-size: 36px 36px;
+}
+
+.list_menu .list_menu_play2{
+    background-image: url(../imgs/暂停.png) !important;
+
 }
 .time>a{
     display: inline-block;
@@ -280,6 +309,7 @@
     height: 30px;
     background: url(../imgs/播放\ \(1\).png);
     background-size: 30px;
+    
 }
 .footer>.footer_in>.left_menu>.playToggle2{
     width: 30px;

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Star (){
+            this.sing = function(){
+                console.log("sing");
+            }
+        }
+        function Star1 (){
+            
+        }
+        
+        Star.prototype.sing = function(){
+            console.log("唱歌");
+        }
+        console.log(Star.prototype.__proto__.constructor);  //Star的原型对象里有个原型属性指向Object的原型对象，然后constructor又指向Object的构造函数
+        console.log(Star.prototype.__proto__.__proto__);    //输出为null，说明Object原型对象的原型对象是null，可算是绕出来了
+        var zjl = new Star()          
+        zjl.sing()        //先查看Star对象是否存在sing方法，如果没有则再寻找Star中原型对象是否存在sing方法
+        var zj = new Star1()     //报错，证明该原型对象是属于Star方法
+        zj.sing()
+    </script>
+</body>
+</html>
