@@ -1,14 +1,17 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QQ音乐</title>
+    <title>qiaoyang音乐</title>
     <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.css">
     <link rel="stylesheet" href="../css/index.css">
     <script src="../js/jquery-3.5.1.js"></script>
     <script src="../js/jquery.mCustomScrollbar.js"></script>
     <script src="../js/players.js"></script>
+    <script src="../js/progress.js"></script>
+    <script src="../js/voiceprogress.js"></script>
+    <script src="../js/lyric.js"></script>
     <script src="../js/index.js"></script>
 </head>
 <body>
@@ -54,11 +57,12 @@
                     <p>歌手名:<a href="javascript:;" class="sing_singer">Qiaoyang</a></p>
                     <p>专辑名:<a href="javascript:;" class="sing_album">情歌王子</a></p>
                 </div>
-                <div class="sing_lyric">
-                    <li>第一条歌词</li>
-                    <li class="on">第二条歌词</li>
-                    <li>第三条歌词</li>
+                <div class="lyricBorder">
+                    <div class="sing_lyric">
+                    
+                    </div>
                 </div>
+                
             </div>
 
         </div>
@@ -91,7 +95,7 @@
                 <a href="javascript:;" class="switch_off" title="是否切换纯净模式"></a>
             </div>
             <div class="voiceChange">
-                <a href="javascript:;"><img src="../imgs/音量.png"></a>
+                <a href="javascript:;"><img title="开关静音模式" src="../imgs/音量.png"></a>
                 <div class="voice_bar_inside">
                     <div class="voice_bar_outside">
                         <div class="voice_bar_ball"></div>

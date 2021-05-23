@@ -1,6 +1,7 @@
 *{
     padding: 0;
     margin: 0;
+    user-select: none;
 }
 .header{
     width: 100%;
@@ -19,10 +20,11 @@
 
 .header>span>a{
     display: inline-block;
-    width: 100px;
+    width: 120px;
     height: 75px;
-    background:url(../imgs/QQ音乐-01.png) no-repeat 0 0;
-    background-size: 100px 100px;
+    background:url(../imgs/logo.png) no-repeat 0 0;
+    background-size: 120px 40px;
+    margin-top: 26px;
     opacity: 0.5;
     cursor: pointer;
 }
@@ -261,10 +263,17 @@
     opacity: 1;
 }
 
-.content_in_right .sing_lyric{
+.content_in_right .lyricBorder {
     text-align: center;
-    height: 170px;
+    height: 150px;
     margin-top: 45px;
+    overflow: hidden;
+    font-weight: 300;
+}
+
+.content_in_right .sing_lyric{
+    
+    
 }
 .content_in_right .sing_lyric>li{
     text-align: center;
@@ -275,8 +284,11 @@
     line-height: 40px;
 }
 .content_in_right .sing_lyric .on{
+    color: rgb(51, 255, 0);
     opacity: 1;
+    
 }
+
 .footer{
     width: 100%;
     height: 60px;
@@ -352,9 +364,10 @@
     height: 4px;
     background-color: rgba(255, 255, 255, 0.507);
     margin-top: 2px;
+    position: relative;
 }
 .bar_inside>.bar_outside{
-    width: 100px;
+    
     height: 100%;
     background-color: white;
 }
@@ -363,9 +376,9 @@
     height: 14px;
     border-radius: 50%;
     background-color: white;
-    position: relative;
+    position: absolute;
     top: -4px;
-    left: 100px;
+    
 }
 .footer>.footer_in>.right_menu{
     display: inline-block;
@@ -432,6 +445,10 @@
 .footer>.footer_in>.voiceChange>a>img{
     width: 25px;
     height: 25px;
+}
+.footer>.footer_in>.voiceChange>a>.img1{
+    opacity: 0.3;
+    
 }
 .voice_bar_inside{
     display: inline-block;

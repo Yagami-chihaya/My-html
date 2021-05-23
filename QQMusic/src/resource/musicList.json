@@ -6,7 +6,7 @@
         "time":"02:34",
         "link_url":"../resource/Welcome To Los Santos.mp3",
         "cover":"../resource/Welcome To Los Santos.jpg",
-        "link_lrc":"../resource/Welcome To Los Santos.irc"
+        "link_lrc":"../resource/Welcome To Los Santos.lrc"
     },
     {
         "name":"成都",
@@ -15,7 +15,7 @@
         "time":"05:28",
         "link_url":"../resource/赵雷 - 成都.mp3",
         "cover":"../resource/赵雷 - 成都.jpg",
-        "link_lrc":"../resource/赵雷 - 成都.irc"
+        "link_lrc":"../resource/赵雷 - 成都.lrc"
     },
     {
         "name":"Bunny",
@@ -24,7 +24,7 @@
         "time":"03:10",
         "link_url":"../resource/张楚寒 - Bunny.mp3",
         "cover":"../resource/张楚寒 - Bunny.jpg",
-        "link_lrc":"../resource/张楚寒 - Bunny.irc"
+        "link_lrc":"../resource/张楚寒 - Bunny.lrc"
     },
     {
         "name":"桃花旗袍",
@@ -33,6 +33,6 @@
         "time":"03:35",
         "link_url":"../resource/BY2 - 桃花旗袍.mp3",
         "cover":"../resource/BY2 - 桃花旗袍.jpg",
-        "link_lrc":"../resource/BY2 - 桃花旗袍.irc"
+        "link_lrc":"../resource/BY2 - 桃花旗袍.lrc"
     }
 ]
