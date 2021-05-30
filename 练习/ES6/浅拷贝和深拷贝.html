@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var obj = {
+            name:'qiaoyang',
+            age:18,
+            info:{
+                id:'1840102243',
+            }
+        }
+        var o = {}
+        for (var k in obj){          //k是对象的属性,而o[k]则是属性的值
+            console.log(k);
+            o[k] = obj[k]
+        }
+        console.log(o);
+        
+
+        o.name = 'yagamichihaya'
+
+        o.info.id = '1840102244'
+
+        console.log(o.name);    //浅拷贝只拷贝对象第一层，对于更深层次只拷贝引用，若修改则会改变引用的值
+        console.log(obj.name);
+
+        console.log(obj.info.id);     //证明说法
+
+
+
+        //若想使用深拷贝，则需要在遍历对象属性值的同时进行递归，直到拷贝完对象所有属性值位置
+        
+    </script>
+</body>
+</html>

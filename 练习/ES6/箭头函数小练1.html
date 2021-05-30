@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        var box = document.getElementById('box')
+
+        /*box.onclick = function(){
+            var that = this
+            setInterval(function(){       //定时器的this指向window，所以需要改成box
+                that.style.backgroundColor = 'pink'    
+            },2000)
+        }*/
+        //上面是常规方法，也可以使用箭头函数会让编写代码更加快捷
+
+        box.onclick = function(){
+            setInterval(()=>{
+                this.style.backgroundColor = 'green'       //因为箭头函数的this是静态指向上级作用域
+            },2000)
+        }
+    </script>
+</body>
+</html>

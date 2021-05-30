@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Symbol
+
+        var a = Symbol('do you like me')     //symbol参数类似于注释，方便解读和区分
+        console.log(a);
+        console.log(typeof a);
+        console.log(a.description);     //description会保存symbol对象的参数
+        //迭代器
+        var nameArr = ['qiaoyang','yagami','chihaya']
+        
+        for (var value of nameArr){        //var ... of ...遍历目标的内容，而for in 遍历返回的是下标
+            console.log(value);
+        }
+
+        //生成器
+        function * fn1(){
+            yield 'qiaoyang';            //yield可以理解为return，但再次使用next调用时会继续执行后续代码并不会重新执行
+            yield 'yagamichihaya';
+            yield 'chihaya';
+        }
+        let iterator = fn1()
+        console.log(iterator);
+        console.log(fn1());
+        console.log(iterator.next('1'));          //next返回两个值，第一个会返回yield返回的值，第二个参数会当yield返回的是undefined为True
+        console.log(iterator.next('1'));       //next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值。
+        
+        console.log(iterator.next('2'));
+        
+        console.log(iterator.next('3'));
+        
+
+
+        /*setTimeout(function(){
+            console.log('111');
+            setTimeout(function(){
+                console.log('222');
+                setTimeout(function(){
+                    console.log('333');          //这种反复回调的现象叫做回调地狱,让代码可读性降低并且难以维护
+                    
+                },3000)
+            },2000)
+        },1000)*/
+        //通过生成器便能很好的解决这个问题
+
+        function one (){
+            setTimeout(function(){
+                console.log('111');
+                iterator2.next()
+            },1000)
+        }
+        function two (){
+            setTimeout(function(){
+                console.log('222');
+                iterator2.next()
+            },2000)
+        }
+        function three (){
+            setTimeout(function(){
+                console.log('333');
+            },3000)
+        }
+        function * time (){
+            yield one()
+            yield two()
+            yield three()
+        }
+        let iterator2 = time()
+        iterator2.next()
+        
+        
+    </script>
+</body>
+</html>

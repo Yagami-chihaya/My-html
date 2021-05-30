@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 1200px;
+            
+            margin:10px auto;
+            
+        }
+        .up_box{
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            background-color: rgb(233, 233, 233);
+            border: 1px solid grey;
+            color: rgb(153, 153, 153);
+            
+        }
+        .up_box>h1{
+            font-size: 16px;
+            margin-left: 10px;
+            font-weight: 400;
+
+        }
+        .down_box{
+            width: 100%;
+            height: 500px;
+            border: 1px solid grey;
+            border-top: none;
+            
+        }
+        .down_box>.info{
+            position: relative;
+            color: grey;
+            font-size: 16px;
+            display: block;
+            left: 240px;
+            top: 30px;
+            
+        }
+        input{
+            margin-left: 300px;
+            width: 600px;
+            height: 40px;
+        }
+        #alert{
+            
+            display: inline-block;
+            font-size: 10px;
+            margin-right: 10px;
+        }
+        .error{
+            color: red;
+        }
+        .correct{
+            color: rgb(0, 172, 0);
+        }
+    </style>
+    
+</head>
+<body>
+    <div id='box'>
+        <div class="up_box">
+            <h1>注册用户</h1>
+        </div>
+        <div class="down_box">
+            <span class="info">手机号:</span><input type="text" class="phone"><span id="alert"></span>
+            <span class="info">QQ:</span><input type="text" class="qq"><span id="alert"></span>
+            <span class="info">昵称:</span><input type="text" class="name"><span id="alert"></span>
+            <span class="info">邮箱:</span><input type="text" class="email"><span id="alert"></span>
+            <span class="info">用户名:</span><input type="text" class="username"><span id="alert"></span>
+            <span class="info">密码:</span><input type="text" class="password"><span id="alert"></span>
+        </div>
+    </div>
+
+    <script src="../ES6/jquery-3.5.1.js"></script>
+    <script>
+        var phone = /^(13[0-9]|14[5|7]|15[0|1|2|3|4|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/
+        var qq = /[1-9][0-9]{4,}/
+        var name = /.*/
+        var email = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+        var username = /^[a-zA-Z][a-zA-Z0-9_]{4,15}$/
+        var password = /^[a-zA-Z]\w{5,17}$/
+        var infoList = [phone,qq,name,email,username,password]
+        
+        
+        
+            $(".phone").blur(function(){
+            if (phone.test(this.value)){
+                $(this).next().addClass('correct')
+                $(this).next().text('正确')
+            }
+            else {
+                $(this).next().addClass('error')
+                $(this).next().text('错误')
+            }
+            })
+
+            $(".qq").blur(function(){
+            if (qq.test(this.value)){
+                $(this).next().addClass('correct')
+                $(this).next().text('正确')
+            }
+            else {
+                $(this).next().addClass('error')
+                $(this).next().text('错误')
+            }
+            })
+
+            $(".email").blur(function(){
+            if (email.test(this.value)){
+                $(this).next().addClass('correct')
+                $(this).next().text('正确')
+            }
+            else {
+                $(this).next().addClass('error')
+                $(this).next().text('错误')
+            }
+            })
+
+            $(".name").blur(function(){
+            if (name.test(this.value)){
+                $(this).next().addClass('correct')
+                $(this).next().text('正确')
+            }
+            else {
+                $(this).next().addClass('error')
+                $(this).next().text('错误')
+            }
+            })
+
+            $(".username").blur(function(){
+            if (username.test(this.value)){
+                $(this).next().addClass('correct')
+                $(this).next().text('正确')
+            }
+            else {
+                $(this).next().addClass('error')
+                $(this).next().text('错误')
+            }
+            })
+
+            $(".password").blur(function(){
+            if (password.test(this.value)){
+                $(this).next().addClass('correct')
+                $(this).next().text('正确')
+            }
+            else {
+                $(this).next().addClass('error')
+                $(this).next().text('错误')
+            }
+            })
+        
+            
+        
+        
+    </script>
+    
+</body>
+</html>

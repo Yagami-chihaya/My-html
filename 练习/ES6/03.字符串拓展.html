@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <li id="list"></li>
+    <script>
+        //es6中可以遍历字符串了！
+        let a= 'qiaoyang'
+        for (str of a){
+            console.log(str);
+        }
+
+        //模块字符串
+        let name = 'qiaoyang'
+        let age = 18
+        let str1 = `hello,i am ${name} and i am ${age}`; //若想保存模板字符串则需要函数来保存
+        console.log(str1);
+        
+        var list = document.getElementById("list")     //模板字符串也会保存换行和空格
+        list.innerHTML=`
+        <ul>
+            <li>first</li>
+            <li>second</li>
+        </ul>
+        `
+
+        //模块字符串还可以使用函数！
+        function sayName(){
+            return 'my name is yagamichihaya'
+        }
+        console.log(`my word:${sayName()}`);
+
+        let template = `
+        <ul>
+        <% for(let i=0; i < data.supplies.length; i++) { %>
+            <li><%= data.supplies[i] %></li>
+        <% } %>
+        </ul>
+        `;
+        console.log(template);
+        //repeat()
+        let str2 = `qiao${'yang'}`
+        console.log(str2.repeat(2));
+
+        //padStart
+        str3 = 'qiaoyang'.padStart(13,'name:')   //第一个参数表示补齐后字符串的长度，若这个参数小于这个长度补齐按照从前往后以此补齐，但若参数小于原字符串长度则不会补齐
+        console.log(str3);//若第二个参数则用空格补齐
+        str4 = 'qiaoyang'.padEnd()
+
+        //trimstart、triend
+        str5 = '  yagami  '
+        console.log(str5.trimStart());
+        console.log(str5.trimEnd());
+
+        //replaceAll
+        str6 = 'n m n m n m n m n m'
+        console.log(str6.replaceAll('n','normal'));  //es6yyds！！
+    </script>
+</body>
+</html>

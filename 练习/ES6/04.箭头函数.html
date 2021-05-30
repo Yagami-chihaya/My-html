@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //箭头函数的格式
+        var fn = x => x * x;      
+        /* 等同于var fn = function(x){
+            return x*x    
+        }
+        */
+        console.log(fn(3)); 
+        var fn1 = x =>{           //多块级时不能省略掉return
+            if (x>0){
+                return x*x
+            }
+            else return -x*x
+        }
+        var fn2 = (x,y) =>{   //多个参数需要小括号包括起来
+            return x*x+y*y 
+        }
+        console.log(fn1(2));
+        console.log(fn1(-2));
+
+        var fn3 = (x,y) =>({          //若返回是一个对象则需要用小括号把对象包装起来。因为花括号和函数体的花括号有冲突
+            name:x,
+            age:y
+        })
+        console.log(fn3("abab",18));
+
+//箭头函数的特性
+        //箭头函数的this总是指向定义时上层作用域，并且没有自己的this对象
+        var obj1 = {
+            who:'qiaoyang',
+            getName:function(){
+                var fn = function(){
+                    return this.who
+                }
+                return fn()
+            
+            }
+        }
+        var obj2 = {
+            who:'qiaoyang',
+            getName:function(){
+                var fn =()=>{                
+                    return this.who            
+                }
+                return fn()                 //obj1对象的getName方法返回的是NaN，因为this指向的是windows或者undefined，而箭头函数this指向了词法作用域，既对象obj2
+            }
+        }
+        console.log(obj1.getName()); 
+        console.log(obj2.getName()); 
+        
+        var fn5 = function(){
+            console.log(this);
+        }
+        var fn6 = ()=>{
+            console.log(this);
+        }
+        fn5()     //输出为window，因为fn5是由window调用的
+        fn6()       //输出也为window，但原因是fn6的上级作用域是window
+
+        window.name = 'qiaoyang'
+        var obj = {
+            name:'yagamichihaya'
+        }
+        var fn7 = function(){
+            console.log(this.name);
+        }
+        var fn8 = ()=>{
+            console.log(this.name);
+        }
+        fn7() //qiaoyang
+        fn8()   //qiaoyang
+        fn7.call(obj)   //yagamichihaya fn7的this更改指向了obj
+        fn8.call(obj)   //qiaoyang      这里说明了fn8并不能通过call方法更改this的指向，因为箭头函数的this是静态指向上级作用域
+
+
+        //箭头函数也不能用于构造函数
+        /*let obj2 = (name,age)=>{
+            this.name = name
+            this.age = age
+        }
+        let person1 = new obj2('www',18)*/ //报错，Identifier 'obj2' has already been declared
+        //证明了箭头函数确实不能构建函数实例对象
+
+        
+    </script>
+</body>
+</html>

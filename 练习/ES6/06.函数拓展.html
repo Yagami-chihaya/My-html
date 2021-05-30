@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function math({x,y=5}={}){       //当函数的参数为对象时，若传入的参数并不是一个对象，但我们想传入对象的属性值
+            //这时候传入属性值会导致对象不存在，所以应该设置一个对象的默认值,仔细能发现{x,y=5}={}是解构赋值
+            console.log(x,y);
+        }
+        math({})
+        math({x:5,y:3})
+        math({y:1})
+        math()
+
+        function m1({x,y}={x:0,y:0}){
+            
+            console.log(x,y);
+            
+        }
+        function m2({x=0,y=0}={}){
+            
+            console.log(x,y);
+        }
+        //比较两个写法可以发现:m1的x和y没有设置默认参数，但设置了属性值。而m2的x和y设置了默认值但无属性值
+            
+        m1() // 0 0
+        m2() // 0 0
+        m1({x:3,y:8})// 3 8
+        m2({x:3,y:8})// 3 8
+        m1({x:5})// 5 undefined
+        m2({x:5})// 5 0
+        m1({})//undefined undefined
+        m2({})// 0 0
+        
+        num1 = (function(a,b,c){}).length          //函数的length可以返回该函数没有设置默认值的参数个数。如果该函数的参数都有默认值或是没有参数则返回0
+        num2 = (function(a,b=5){}).length
+        num3 = (function(a=1,b=2,c=3){}).length
+        num4 = (function(){}).length
+        console.log(num1,num2,num3,num4); // 3 1 0 0
+
+        var fn5 = function(x,y=x){
+            console.log(y);
+        }
+        fn5(5)  //5
+        var x = 2      //定义一个函数外部的变量，不然会报错
+        var fn6 = function(y=x){
+            var x = 6
+            console.log(y);;
+        }
+        fn6() //undefined
+        /*var x = 10
+        var fn7 = function(x=x){        //这里x=x相当于let x = x，会导致暂时性死区，所以也会报错
+            console.log(x);
+        }
+        fn7()*/
+
+        console.log(fn6.name); //函数的name属性可以返回函数的名字
+    </script>
+</body>
+</html>

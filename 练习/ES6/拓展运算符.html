@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let [a,...b] = ["a","b","c"]
+        console.log([a,...b]);
+        console.log(a);
+        console.log(b);   //b保存了a之后所有的值
+
+        let abab = ["dd","ee","ff"]
+        console.log(...abab);     //等同于console.log("dd","ee","ff");
+
+        let arr1 = ["aa","bb","cc"]
+        let arr2 = [...arr1,...abab]
+        console.log(arr2);         //相加
+
+
+        
+
+
+    </script>
+</body>
+</html>

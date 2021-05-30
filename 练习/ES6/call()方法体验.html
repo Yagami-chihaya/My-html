@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function father(name,age){
+            this.name = name
+            this.age = age
+        }
+        function son(name,age,score){
+            father.call(this,name,age)  //call第一个参数改变该函数的this指向的对象    这里的this是son构造函数，即father的this指向了son的this
+            this.score = score
+        }
+        //son.prototype = father.prototype       //不能这么使用！因为把父对象原型直接赋值给子对象会导致子对象覆盖父对象，子对象的方法和属性都会覆盖父元素！
+        son.prototype = new father()
+        son.prototype.exam = function(){
+            console.log("考试！");
+        }
+        var dad = new father("小明",40)
+        var erzi = new son("小王",15,100)
+      
+        console.log(dad);
+        console.log(erzi);
+    </script>
+</body>
+</html>
