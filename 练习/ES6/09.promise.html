@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var p = new Promise(function(resolve,reject){
+            setTimeout(function(){
+                let success = '成功读取'
+                resolve(success)
+                let err = '读取失败'
+                reject(err)
+            },1000)
+            
+        })
+        p.then(function(value){        //第一个回调函数调用成功就不会调用第二个回调函数
+            console.log(value);
+        },function(reason){
+            console.error(reason);
+        })
+    </script>
+</body>
+</html>
