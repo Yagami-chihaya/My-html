@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #btn{
+            width: 200px;
+            height: 50px;
+
+        }
+    </style>
+    
+</head>
+<body>
+    <input type='button' value="点击抽奖" id="btn">
+    <script>
+        var btn = document.getElementById('btn')
+        
+        console.log(btn);
+        btn.onclick = function(){
+
+            function rand(n,m){
+                return Math.random()*(m-n)+n
+            }
+            
+            
+            var p = new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    let n = rand(1,100)
+                    console.log(n);
+                    if(n<30){
+                        resolve()
+                    }else{
+                        reject()
+                    }    
+            
+                },1000)
+                
+            })
+            p.then(()=>{
+                alert("恭喜中奖")   
+            },()=>{
+                alert("很遗憾没有中奖哦")
+            })
+            
+
+
+        }
+
+
+    </script>
+</body>
+</html>
