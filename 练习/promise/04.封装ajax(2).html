@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #btn{
+            width: 200px;
+            height: 50px;
+
+        }
+    </style>
+    
+</head>
+<body>
+    <input type='button' value="点击生成" id="btn">
+    <script>
+        var btn = document.getElementById('btn')
+        var xhr = null
+        btn.onclick = function(){
+            function sendAJAX(url){
+                return new Promise((resolve,reject)=>{
+                    xhr = new XMLHttpRequest()
+                    xhr.open('GET',url)
+                    xhr.send()
+                    xhr.onreadystatechange = function(){
+                        if(xhr.readyState===4){
+                            if(xhr.status>=200&&xhr.status<300){
+                                resolve(xhr.response)
+                            }else {
+                                reject(xhr.status)
+                            }
+                        }
+                    }
+                })
+            }
+
+            sendAJAX('http://127.0.0.1:9000/server').then((value)=>{
+                console.log(value);
+            },(reason)=>{
+                console.log(reason);
+            })
+            
+}    
+
+        
+
+       
+
+            
+
+    </script>
+</body>
+</html>
+
+
+
+
