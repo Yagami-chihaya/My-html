@@ -60,6 +60,24 @@
         fn7()*/
 
         console.log(fn6.name); //函数的name属性可以返回函数的名字
+
+
+        //rest运算符        rest运算符也是三个点号，不过其功能与扩展运算符恰好相反，把逗号隔开的值序列组合成一个数组
+        function add(...value){
+            console.log(value);
+            var sum = 0
+            for(let v of value){
+                sum += v
+            }
+            return sum
+        }
+        console.log(add(1,2,3,4)); 
+
+        const sortNumbers = (...number)=>{   
+           return number.sort()
+        }
+        
+        console.log(sortNumbers(1,5,6,8,9,4,6));
     </script>
 </body>
 </html>

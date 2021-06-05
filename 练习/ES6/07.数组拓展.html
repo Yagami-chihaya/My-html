@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>1</p>
+    <p>22</p>
+    <p>333</p>
+    <p>4444</p>
+    <p>55555</p>
+    <p>666666</p>
+    <script>
+        //扩展运算符（spread）是三个点（...）。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列。
+
+        console.log(1,2,...[3,4,5],6);
+        
+        //数组的合并
+        const arr1 = ["qwe","ert","yui"]
+        const arr2 = ["asd","fgh","jkl"]
+        const arr3 = [...arr1,...arr2]
+        console.log(arr3);
+
+        //数组的克隆
+        const arr4 = ["qiaoyang"]
+        const arr5 = [...arr4]
+        console.log(arr5);
+
+        //类数组转换为数组
+        let json ={
+            0:'qiaoyang',
+            1:'male',
+            2:20,
+            length:3
+        } 
+        console.log(Array.from(json)); 
+
+        //NodeList对象也能转换数组
+            let nodelist=document.getElementsByTagName('p')
+            let newArr = Array.from(nodelist).filter((p)=>{
+                return p.innerText.length>3
+            })
+            for (let q of newArr){
+                console.log(q.innerText);
+            }
+            //同样拓展运算符也可以
+            let newArr2 = [...nodelist]
+            console.log(newArr2);
+
+            //Array.from也可以传入第二个参数，类似于数组的map方法把处理后的数据放入数组
+            console.log(Array.from([1,2,3],x=>x*x)); 
+            console.log(Array.from([1,2,3]).map(x=>x*x));
+
+    </script>
+</body>
+</html>

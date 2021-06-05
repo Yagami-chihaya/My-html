@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="module">
+        /*import * as m1 from './13.exports.js'
+        console.log(m1);
+        console.log(m1.name);
+        console.log(m1.sayname);*/
+        //import {name,sayname} from './13.exports.js'
+        
+
+        //若导入模块的变量名重复则可以使用as关键字进行重命名
+        //例如import {name as n,sayname} from './13.exports.js'
+        //变量名如果是关键字也必须要用as进行重命名
+        
+
+        //当然也可以直接全部引用,这种方式只支持默认暴露
+        import m from './13.exports.js'
+        console.log(m.name);
+        console.log(m.sayname);
+
+        
+    </script>
+    
+</head>
+<body>
+    
+</body>
+</html>

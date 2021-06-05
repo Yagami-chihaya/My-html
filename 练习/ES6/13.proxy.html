@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Proxy 可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问
+        //都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写
+        var proxy = new Proxy({},{
+            get:function(target,propKey){
+                return 30
+            }
+        })
+        console.log(proxy.name);//由于无论做什么拦截函数都会返回30，所以访问对象会被拦截并返回结果
+        console.log(proxy.sex);
+        var target = {}
+        var handler = {}
+        var proxy = new Proxy(target,handler)
+        //由于访问对象和拦截函数都是空，所以proxy对象等于目标对象
+        proxy.a = 'a'
+        console.log(target.a);
+        
+        var proxy = new Proxy({}, {
+            get: function(target, propKey) {        //get方法用于拦截某个属性的读取操作，可以接受三个参数，依次为目标对象、属性名和 proxy 实例本身
+                return 35;
+            }
+        });
+        var obj = Object.create(proxy)        //给Object对象的原型添加proxy对象,由于obj对象没有time属性，所以根据原型链
+                                                //会找到proxy对象，又因为proxy拦截函数任何操作都返回35导致无法访问目标对象
+        console.log(obj);
+        console.log(obj.time);  
+
+        var person = {
+            name:'qiaoyang'
+        }
+        var proxy = new Proxy(person,{          //如果propKey不存在目标对象中，则会返回no Attribute，反之返回对应属性信息
+            get:function(target,propKey){
+                if(propKey in target){
+                    return target[propKey]
+                }else {
+                    return 'no Attribute'
+                }
+            }
+        })
+        console.log(proxy.name);
+        console.log(proxy.age);
+    </script>
+</body>
+</html>
