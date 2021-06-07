@@ -29,6 +29,10 @@
         b[symbol] = 'hello'
         console.log(b);
         //注意，Symbol 值作为对象属性名时，不能用点运算符。因为点运算符后面总是字符串，所以不会读取mySymbol作为标识名所指代的那个值，导致a的属性名实际上是一个字符串，而不是一个 Symbol 值。
+       
+       
+        
+       
         //迭代器
         var nameArr = ['qiaoyang','yagami','chihaya']
         
@@ -36,21 +40,26 @@
             console.log(value);
         }
 
+
+
+
+
         //生成器
         function * fn1(){
-            yield 'qiaoyang';            //yield可以理解为return，但再次使用next调用时会继续执行后续代码并不会重新执行
-            yield 'yagamichihaya';
-            yield 'chihaya';
+            yield;            //yield可以理解为return，但再次使用next调用时会继续执行后续代码并不会重新执行
+            yield;       //另外需要注意，yield表达式只能用在 generator 函数里面，用在其他地方都会报错。
+            yield 
         }
-        let iterator = fn1()
-        console.log(iterator);
+        let generator = fn1()
+        console.log(generator);
         console.log(fn1());
-        console.log(iterator.next('1'));          //next返回两个值，第一个会返回yield返回的值，第二个参数会当yield返回的是undefined为True
-        console.log(iterator.next('1'));       //next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值。
         
-        console.log(iterator.next('2'));
+        console.log(generator.next('a'));          //next返回两个值，第一个会返回yield返回的值，第二个参数会当yield没有返回值时返回True
+        console.log(generator.next('b'));       //next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值。
         
-        console.log(iterator.next('3'));
+        console.log(generator.next(true));
+        
+        console.log(generator.next(true));
         
 
 

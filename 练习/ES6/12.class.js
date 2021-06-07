@@ -1,3 +1,5 @@
+//在类的参数传递中我们用constructor( )进行传参。传递参数后可以直接使用this.xxx进行调用。
+
 class phone {
     constructor(brand,price){
         this.brand = brand
@@ -10,7 +12,7 @@ class phone {
 }
 class Smartphone extends phone{
     constructor(brand,price,color,size){
-        super(brand,price)
+        super(brand,price)    //super只能在子类构造函数使用，不然报错
         this.color = color
         this.size = size
     }
