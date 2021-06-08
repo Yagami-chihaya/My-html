@@ -1,0 +1,33 @@
+$bgcolor:red;
+
+@import "reset";  //导入reset.scss文件
+@mixin bigger($size,$weight){  //混入   可以传入参数也可以不传
+   font: {
+       size: $size;
+       weight: $weight;
+   }
+}
+div{
+  background-color:$bgcolor;
+  //标签嵌套
+  p{        
+    @include bigger(larger,bolder);//导入要混入的样式
+    width:200px;
+    height:100px;
+    color: white;
+  }
+  //属性嵌套
+  font: {
+      size: 18px;
+      weight:bold
+  }
+  text: {
+      align:center;
+      
+  }
+  h1 {
+      @extend p;
+      text-decoration: underline;
+  }
+    
+}
