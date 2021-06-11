@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{fullname}}</h2>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                firstName:'yagami',
+                lastName:'chihaya'
+            },
+            computed:{  //计算属性有缓存机制，能判断内容是否修改，如果内容相同那么不会重复调用
+                fullname(){
+                    return this.firstName+' '+this.lastName
+                }
+            }
+            
+        })
+    </script>
+</body>
+</html>

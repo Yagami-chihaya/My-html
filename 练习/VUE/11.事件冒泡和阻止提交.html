@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app{
+            width: 100px;
+            height: 50px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div @click='clickMe'>
+            btn1<button @click.stop='clickme'>btn2</button>   <!--.stop可以阻止事件冒泡-->
+        </div>
+        <form action="baidu">
+            <button type="submit" @click.prevent='submit'>submit</button>   <!--.prevent可以阻止对象的默认行为-->
+        </form>
+        <input @keyup.enter='enterUp'>            <!--比原生可太方便了-->
+        <input @keyup='showKey'>
+        
+    </div>
+    
+    <script src="./vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+
+            },
+            methods:{
+                clickMe(){
+                    console.log('btn1被提交了');
+                },
+                clickme(){
+                    console.log('btn2被提交了');
+                },
+                submit(){
+                    console.log('已提交');
+                },
+                enterUp(){
+                    console.log('回车已被弹起');
+                },
+                showKey(event){
+                    console.log(event.key);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

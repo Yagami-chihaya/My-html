@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <img v-bind:src="url"></img>  <!--v-bind可以动态修改属性值-->
+        <!--当然也可以使用语法糖-->
+        <img :src="url1"></img>
+    </div>
+    <div id="app1">
+        <p :class="{active:isActive}">{{text}}</p>
+        <button v-on:click='changeColor'>点我变色</button>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                url:'https://w.wallhaven.cc/full/x8/wallhaven-x86eko.jpg',
+                url1:"https://w.wallhaven.cc/full/28/wallhaven-281d5y.png"
+            }
+        })
+        const app1 = new Vue({
+            el:'#app1',
+            data:{
+                text:'动态修改class',
+                isActive:true
+            },
+            methods:{
+                changeColor:function(){
+                    this.isActive = !this.isActive
+                    
+                }
+            }
+        })
+    </script>
+</body>
+</html>

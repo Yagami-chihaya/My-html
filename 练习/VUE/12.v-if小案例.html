@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <span v-if='isUser'>
+            <label for="username">用户账号</label>
+            <input type="text" placeholder="请输入用户账号" id="username" key='username'>
+            <!--vue底层会开启虚拟DOM，当发现渲染的标签一致时不会更改标签的值-->
+        </span>
+        <span v-else>
+            <label for="useremail">用户邮箱</label>
+            <input type="text" placeholder="请输入用户邮箱" id='useremail' key='useremail'>
+            <!--添加key属性可以解决这个问题-->
+        </span>
+        <button v-on:click='changeLogin'>点击切换</button>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                isUser: true
+            },
+            methods: {
+                changeLogin() {
+                    this.isUser = !this.isUser
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

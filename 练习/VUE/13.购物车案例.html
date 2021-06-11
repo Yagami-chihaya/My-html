@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        table{
+            background-color: rgba(204, 204, 204, 0.493);
+        }
+        th{
+            border-bottom: 1px solid grey;
+            border-right: 1px solid grey;
+            text-align: center;
+            padding: 5px;
+        }
+        td{
+            border-bottom: 1px solid grey;
+            border-right: 1px solid grey;
+            text-align: center;
+            padding: 5px;
+        }
+        #add{
+            width: 20px;
+            height: 10px;
+            line-height: 10px;
+            text-align: center;
+        }
+        #sub{
+            width: 20px;
+            height: 10px;
+            line-height: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='app'>
+        <table  v-if='isTrue'>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>书品名称</th>
+                    <th>出版日期</th>
+                    <th>价格</th>
+                    <th>购买数量</th>
+                    <th>cost</th>
+                    <th>操作</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for='(book,key) in books'>
+                    
+                    <td>{{book.id}}</td>
+                    <td>{{book.name}}</td>
+                    <td>{{book.date}}</td>
+                    <td>{{book.price.toFixed(2)}}</td>
+                    <td>
+                        <button id='add' @click='add(key)'>+</button>
+                        <span>{{book.count}}</span>
+                        <button id='sub' @click='sub(key)'>-</button>
+                    </td>
+                    <td>{{(book.price*book.count).toFixed(2)}}</td>
+                    <td><button @click='deleteBook(key)'>移除</button></td>
+                </tr>      
+            </tbody>
+        </table>
+        <h1 v-else>购物车已被清空</h1>
+        <h2>{{allCost.toFixed(2)}}</h2>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                books: [
+                    {
+                        id: 1,
+                        name: '《计算机导论》',
+                        date: '2006-9',
+                        price: 85.00,
+                        count:0
+                    },
+                    {
+                        id: 2,
+                        name: '《DOM编程艺术》',
+                        date: '2016-9',
+                        price: 152.00,
+                        count:0
+                    },
+                    {
+                        id: 3,
+                        name: '《英语四六级考试模板》',
+                        date: '2010-6',
+                        price: 49.00,
+                        count:0
+                    },
+                    {
+                        id: 4,
+                        name: '《临摹案例》',
+                        date: '2015-1',
+                        price: 30.00,
+                        count:0
+                    },
+                ],
+                isTrue:true
+            },
+            computed:{
+                allCost(){
+                    let allcost = 0
+                    for(item of this.books){
+                        allcost+=item.price*item.count
+                    }
+                    return allcost
+                }
+            },
+            methods:{
+                
+                add(key){
+                    this.books[key].count++
+                },
+                sub(key){
+                    if(this.books[key].count>0)
+                    this.books[key].count--
+                },
+                deleteBook(key){
+                    this.books.splice(key,1)
+                    if(this.books.length==0){
+                        this.isTrue=!this.isTrue
+                    }
+                }
+                
+
+            }
+        })
+    </script>
+</body>
+
+</html>
