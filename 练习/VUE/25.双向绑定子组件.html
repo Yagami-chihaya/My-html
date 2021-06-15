@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <cpn :number1='num1' :number2='num2'></cpn>
+    </div>
+    <template id='cpn'>
+        <div>
+            <input v-model='dnumber1'>  <!--此处直接绑定父组件的属性会报错，需要绑定子组件属性-->
+            <p>{{dnumber1}}</p>
+            <input v-model='dnumber2'>
+            <p>{{dnumber2}}</p>
+        </div>
+    </template>
+    <script src="./vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                num1:0,
+                num2:1
+            },
+            components:{
+                cpn:{
+                    template:'#cpn',
+                    props:{
+                        number1:Number,
+                        number2:Number
+                    },
+                    data(){
+                        return {
+                            dnumber1:this.number1,
+                            dnumber2:this.number2
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

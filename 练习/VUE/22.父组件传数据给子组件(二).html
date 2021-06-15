@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <cpn :cinfo='info' :c-show-Message='showMessage'></cpn>     <!--若想使用驼峰命名法，则需要在属性命名这里使用-符号代替驼峰-->
+    </div>
+    <template id='cpn'>
+        <div>             
+            <p>{{cinfo}}</p>
+            <p>{{cShowMessage}}</p>
+        </div>
+        
+
+    </template>
+    <script src='./vue.js'></script>
+    <script>
+        const cpn = {
+            template:'#cpn',
+            props:{
+                cinfo:{
+                    type:Object,
+                    default(){
+                        return {}
+                    }
+                },
+                cShowMessage:{
+                    type:String,
+                    default:' '
+                }
+            }
+        }
+        const app = new Vue({
+            el:'#app',
+            data:{
+                info:{
+                    name:'qiaoyang',
+                    gendar:'male',
+                    age:18
+                },
+                showMessage:'hello'
+                
+            },
+            components:{
+                cpn:cpn
+            }
+        })
+    </script>
+</body>
+</html>

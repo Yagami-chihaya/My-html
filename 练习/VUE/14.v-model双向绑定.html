@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input v-model='message'>
+        <p>{{message}}</p>
+    </div>
+    <div id='app1'>
+        <label for='male'>男</label>
+        <input type="radio" id='male' name="sex" v-model='sex' value="男">
+        <label for='female'>女</label>
+        <input type="radio" id='female' name="sex" v-model='sex' value='女'>
+        <h2>你当前的性别为:{{sex}}</h2>
+    </div>
+    <div id='app2'>
+        <input type="checkbox" v-model='isAgree'>
+        <h2>您当前选择:{{isAgree}}</h2>
+        <button :disabled='!isAgree'>下一步</button>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:'芜湖'
+            }
+        })
+        const app1 = new Vue({
+            el:'#app1',
+            data:{
+                sex:'男'
+            }
+        })
+        const app2 = new Vue({
+            el:'#app2',
+            data:{
+                isAgree:false
+            }
+        })
+    </script>
+</body>
+</html>

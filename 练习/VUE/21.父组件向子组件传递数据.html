@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <cpn1 v-bind:sonMovies='movies'></cpn1>
+    </div>
+    <template id="temp1">
+        <div>
+            <li v-for='item in sonmovies'>{{item}}</li>
+        </div>
+    </template>
+    <script src="./vue.js"></script>
+    <script>
+        Vue.component('cpn1',{
+            template:'#temp1',
+            props:['sonmovies']
+        })
+        const app = new Vue({
+            el:'#app',
+            data:{
+                movies:['海贼王','火影忍者','死神']
+            }
+        })
+    </script>
+</body>
+</html>

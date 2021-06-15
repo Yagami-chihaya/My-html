@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <cpn ref='aaa'><button @click='btnClick'>点我</button></cpn>
+        <cpn><p>我不是默认插槽</p></cpn>
+        <cpn></cpn>
+    </div>
+    <template id='cpn'>
+        <div>
+            <p>奥利给</p>
+            <!--<slot></slot>           --此处插入-->
+            <slot><p>我是默认插槽</p></slot>     <!--设置默认插槽内容-->
+        </div>
+    </template>
+    <script src="./vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                
+            },
+            methods:{
+                btnClick(){
+                    console.log(this.$refs.aaa.message);
+                }
+            },
+            components:{
+                cpn:{
+                    template:'#cpn',
+                    data(){
+                        return {
+                            message:'hello'
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
