@@ -2,6 +2,7 @@ import _ from 'lodash'
 import './style.css'
 import wallpaper from './wallpaper.png'
 
+
 function component() {
     const element = document.createElement('div');
   
@@ -16,4 +17,7 @@ function component() {
     return element;
   }
   
+
   document.body.appendChild(component());
+
+  

@@ -12,6 +12,7 @@ module.exports={
         filename:'bundle.js',
         path:path.resolve(__dirname,'dist'),
         clean:true,
+        assetModuleFilename: 'images/[hash:8][ext][query]'  //设置图片文件名
     },
     module:{
         rules:[
@@ -21,8 +22,20 @@ module.exports={
             },
             {
                 test:/\.(png|jpg|gif)$/i,
-                type:'asset/resource'
+                type:'asset/resource',
+                
+                
             },
+            {
+                test: /\.m?js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                  loader: 'babel-loader',
+                  options: {
+                    presets: ['babel-preset-es2015']
+                  }
+                }
+              }
         ],
     },
 }
